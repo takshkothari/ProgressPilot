@@ -1,4 +1,4 @@
-# dbsproject
+# Problem Statement
 Design and implement a Web-based system to record student registration and grade information for courses at a university which permits recording of course performance information—specifically, the marks given to each student in each assignment or exam of a course, and computation of a (weighted) sum of marks to get the total course marks. The number of assignments/exams should not be predefined; that is, more assignments/exams can be added at any time. The system should also support grading, permitting cut-offs to be specified for various grades.
 A database will be used to store the details of a student and marks in each assignment/exam. Operations on the database will be used to calculate the grades and the database can be viewed in the form of a table(s) to see the marks/grades of a student.
 
