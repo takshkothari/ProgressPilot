@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name = "viewport" content="width=device-width, initial-scale=1" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    /> -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    /> -->
+
+    <title>Login</title>
+
+
+    <style>
+      /* Custom styles */
+      h1 {
+        text-align: center;
+      }
+      h5 {
+        text-align: center;
+      }
+      html, body {
+        background-image: url('waves.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Helvetica Neue", "Helvetica", sans-serif;
+      }
+      .container {
+        margin-top: 50px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 50%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        box-shadow: none;
+        background-color: #f7f7f7;
+        margin: 0 0 10px;
+        font-size: 16px;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+      .signup {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #000;
+        font-size: 14px;
+      }
+      .signup a {
+        color: #000;
+        text-decoration: underline;
+      }
+      .line {
+        /*margin-top: 50px; */
+        text-align: center;
+        width: 100%;
+      }
+      .line hr {
+        border: 0;
+        height: 1px;
+        background-color: #ccc;
+        width: 50%;
+      }
+      #emailInput {
+        width: 50%;
+      } 
+    
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>ProgressPilot</h1>
+      <div class="line">
+        <hr>
+      </div>
+      <form>
+        <div class="row">
+          <div class="twelve columns">
+            <h5>Login</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="twelve columns">
+            <label for="emailInput">Registration Number</label>
+            <input class="u-full-width" type="email" placeholder="Registration Number" id="regIdInput" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="twelve columns">
+            <label for="passwordInput">Password</label>
+            <input class="u-full-width" type="password" placeholder="********" id="passwordInput" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="twelve columns">
+            <input class="button-primary" type="submit" value="Login">
+          </div>
+        </div>
+      </form>
+      <label class="signup">Not registered? <a href="/sign-up">Click here to register.</a></label>
+    </div>
+
+
+
+    <script>
+      // Validate email format
+      document.getElementById("emailInput").addEventListener("input", function(event) {
+        let email = event.target.value;
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let isValidEmail = emailRegex.test(email);
+        let emailError = document.getElementById("emailError");
+      
+        if (!isValidEmail) {
+          emailError.textContent = "Please enter a valid email address.";
+          emailError.style.display = "block";
+        } else {
+          emailError.textContent = "";
+          emailError.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>  

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Homepage</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+  <style>
+    /* Custom styles */
+    h1{
+    text-align: center;
+     }
+    html, body {
+      background-image: url('waves.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Helvetica Neue", "Helvetica", sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    
+    /* Custom button styles */
+    .button-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100px; /* Increase the button height */
+      font-size: 36px; /* Increase the font size */
+      margin-bottom: 20px; /* Add some margin between buttons */
+      text-align: center;
+      background-color: #a9d1dd;
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .button-primary:hover {
+      background-color: #a9d1dd;
+    }
+    .line {
+      /*margin-top: 50px; */
+      text-align: center;
+      width: 100%;
+    }
+    .line hr {
+      border: 0;
+      height: 1px;
+      background-color: #ccc;
+      width: 50%;
+    }
+    
+    /* Remove underline from buttons */
+    a.button-primary {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ProgressPilot</h1>
+        <div class="line">
+        <hr>
+        <br>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <a href="/login" class="button-primary">Login</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <a href="/sign-up" class="button-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

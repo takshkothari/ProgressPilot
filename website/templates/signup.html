@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <style>
+    /* Custom styles */
+    h1 {
+      text-align: center;
+    }
+    h5 {
+      text-align: center;
+    }
+    html, body {
+      background-image: url('waves.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Helvetica Neue", "Helvetica", sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 50%;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      box-shadow: none;
+      background-color: #f7f7f7;
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+    input[type="submit"],
+    input[type="reset"] {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background-color: #3e8e41;
+    }
+    .form-label {
+      display: inline-block;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    .form-row {
+      margin-bottom: 10px;
+    }
+    .message {
+      text-align: center;
+      margin-top: 20px;
+      color: #000;
+      font-size: 14px;
+    }
+    .message.success {
+      color: #3CB371;
+      font-weight: bold;
+    }
+    .message.error {
+      color: #FF6347;
+      font-weight: bold;
+    }
+    #emailInput,
+    #passwordInput,
+    #phoneInput {
+      width: 100%;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ProgressPilot</h1>
+    <div class="line">
+      <hr>
+    </div>
+    <div class="signup-form">
+      <h2>Enter Student Details</h2>
+      <form id="signupForm" method="POST">
+        <div class="row">
+          <div class="six columns">
+            <label for="nameInput">Name</label>
+            <input class="u-full-width" type="text" placeholder="Your name" id="nameInput" name="nameInput" required>
+          </div>
+          <div class="six columns">
+            <label for="regIdInput">Registration ID</label>
+            <input class="u-full-width" type="text" placeholder="Registration ID" id="regIdInput" name="regIdInput" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="six columns">
+            <label for="emailInput">Email ID</label>
+            <input class="u-full-width" type="email" placeholder="you@example.com" id="emailInput" name="emailInput" required>
+          </div>
+          <div class="six columns">
+            <label for="passwordInput">Password</label>
+            <input class="u-full-width" type="password" placeholder="********" id="passwordInput" name="passwordInput" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="twelve columns">
+            <label for="phoneInput">Phone Number</label>
+            <input class="u-full-width" type="tel" placeholder="123-456-7890" id="phoneInput" name="phoneInput" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="twelve columns">
+            <label for="birthdate">Date of Birth:</label>
+            <input type="text" id="birthdate" name="birthdate" placeholder="DD/MM/YYYY" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="twelve columns">
+            <input class="button-primary" type="submit" value="Submit">
+            <input class="button-primary" type="reset" value="Reset">
+          </div>
+        </div>
+      </form>
+    </div>
+  
+    <script>
+      // Validate email format
+      document.getElementById("emailInput").addEventListener("input", function(event) {
+        let email = event.target.value;
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let isValid = emailRegex.test(email);
+          if (!isValid) {
+            event.target.setCustomValidity("Invalid email format");
+          } else {
+            event.target.setCustomValidity("");
+          }      
+      });
+    
+      // Validate registration ID and phone number
+      let regIdRegex = /^\d{10}$/;
+      let phoneRegex = /^\d{10}$/;
+      let isRegIdValid = regIdRegex.test(regId);
+      let isPhoneValid = phoneRegex.test(phone);
+          
+      // Show error messages if any field is invalid
+      if (!isRegIdValid) {
+        document.getElementById("regIdInput").setCustomValidity("Registration ID must be 10 digits");
+      } else {
+        document.getElementById("regIdInput").setCustomValidity("");
+      }
+      if (!isPhoneValid) {
+        document.getElementById("phoneInput").setCustomValidity("Phone number must be 10 digits");
+      } else {
+        document.getElementById("phoneInput").setCustomValidity("");
+      }
+          
+      // Validate date format
+      let dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+      let isValidDate = dateRegex.test(birthdate);
+          
+      if (!isValidDate) {
+      document.getElementById("birthdate").setCustomValidity("Invalid date format");
+      } else {
+        document.getElementById("birthdate").setCustomValidity("");
+      }
+          
+      // Submit form if all fields are valid
+      if (isRegIdValid && isPhoneValid && isValidDate) {
+        // TODO: Send data to server for registration
+
+        // Display success message
+        document.getElementById("signupForm").style.display = "none";
+        let successMsg = document.createElement("p");
+        successMsg.innerHTML = "Registration successful! You will now be redirected to the login page.";
+        successMsg.style.textAlign = "center";
+        document.body.appendChild(successMsg);
+        setTimeout(function() {
+          window.location.href = "login.html";
+        }, 3000);
+      }
+      // Submit form
+      document.getElementById("signupForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let name = document.getElementById("nameInput").value;
+        let regId = document.getElementById("regIdInput").value;
+        let email = document.getElementById("emailInput").value;
+        let password = document.getElementById("passwordInput").value;
+        let phone = document.getElementById("phoneInput").value;
+        let birthdate = document.getElementById("birthdate").value;
+      });
+    </script>
+  </div>
+</body>
+</html>

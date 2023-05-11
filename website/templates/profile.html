@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Homepage</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+        /* Custom styles */
+        h1{
+        text-align: center;
+         }
+         h3{
+        text-align: center;
+         }
+        html, body {
+          background-image: url('waves.png');
+          background-repeat: no-repeat;
+          background-size: cover;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          font-family: "Helvetica Neue", "Helvetica", sans-serif;
+          font-weight: bold;
+        }
+        .container {
+          margin-top: 50px;
+        }
+        
+        /* Custom button styles */
+        .button-primary {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 30px; /* Increase the button height */
+          font-size: 10px; /* Increase the font size */
+          margin-bottom: 20px; /* Add some margin between buttons */
+          text-align: center;
+          background-color: #a9d1dd;
+          color: black;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+        .line {
+          /*margin-top: 50px; */
+          text-align: center;
+          width: 100%;
+        }
+        .line hr {
+          border: 0;
+          height: 1px;
+          background-color: #ccc;
+          width: 50%;
+        }
+        
+        /* Remove underline from buttons */
+        a.button-primary {
+          text-decoration: none;
+          margin-top:5px ;
+        }
+        
+        /* Custom label and input styles */
+        .label-input {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+        .label-input label {
+          flex-basis: 30%;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+        .label-input input {
+          flex-grow: 1;
+        }
+        button[type="submit"] {
+          background-color: rgb(130, 207, 211);
+          color: rgb(0, 0, 0);
+        }
+
+        /* Add styles for input groups */
+        .input-group {
+          display: inline-flex;
+          align-items: center;
+        }
+
+        /* Add margin to input groups */
+        .input-group + .input-group {
+          margin-left: 10px;
+        }
+
+        /* Change color of save button on hover */
+        .button-primary:hover {
+          background-color: #fff;
+          color: black;
+        }
+        .a{
+            margin-top: 5 px;
+        }
+    </style>
+   
+</head>
+<body> 
+    <div class="container">
+      <h1>ProgressPilot</h1>
+      <div class="line">
+        <hr>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <h3>Profile Page</h3>
+        </div>
+      </div>\<div class="row">
+        <div class="twelve columns">
+          <h5>Registartion Number:</h5>
+          <p><?php echo $regNo; ?></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <h5>Name:</h5>
+          <p><?php echo $name; ?></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <h5>Current Semester:</h5>
+          <p><?php echo $semester; ?></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <h5>Date of Birth:</h5>
+          <p><?php echo $dob; ?></p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="four columns">
+          <h5>Email:</h5>
+        </div>
+        <div class="eight columns">
+          <?php if ($editing) { ?>
+          <form method="post">
+            <input type="email" name="email" value="<?php echo $email; ?>" required>
+            <button type="submit" class="button-primary">Save</button>
+          </form>
+          <?php } else { ?>
+          <p><?php echo $email; ?></p>
+          <a href="?edit=email" style="margin-top: 5px;">Edit</a>
+          <?php } ?>
+        </div>
+      </div>
+      <div class="row">
+        <div class="four columns">
+          <h5>Phone Number:</h5>
+        </div>
+        <div class="eight columns">
+          <?php if ($editing) { ?>
+          <form method="post">
+            <input type="tel" name="phone" value="<?php echo $phone; ?>" required>
+           <button type="submit" class="button-primary">Save</button>
+          </form>
+          <?php } else { ?>
+          <p><?php echo $phone; ?></p>
+          <a href="?edit=phone" style="margin-top: 5px;">Edit</a>
+          <?php } ?>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>  

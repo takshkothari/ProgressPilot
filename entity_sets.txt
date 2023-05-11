@@ -1,0 +1,26 @@
+Entity sets:
+
+Student: Attributes include regNo, name, email, password, and phone.
+Course: Attributes include courseID, title, and credits.
+Assignment/Exam: Attributes include aeID, maxmarks, and courseID.
+Semester: Attributes include sem and opa.
+Relationship sets:
+
+Enrolls: Relationship between Student and Course, with attributes sem and grade.
+Takes: Relationship between Student and Assignment/Exam, with attribute marks.
+Belongs: Relationship between Assignment/Exam and Course.
+Relationship sets with attributes:
+
+Enrolls:
+Student ID (primary key)
+Course ID (primary key)
+Semester (primary key)
+Grade
+Takes:
+Student ID (primary key)
+Assignment/Exam ID (primary key)
+Marks
+Belongs:
+Assignment/Exam ID (primary key)
+Course ID (primary key)
+Note: I have excluded the attributes "title" and "maxmarks" from the "Enrolls" and "Takes" relationship sets respectively, as they can be obtained from the "Course" and "Assignment/Exam" entity sets.

@@ -1,0 +1,70 @@
+Here are the tables for the given entity sets:
+
+Table name: student
+
+Column name Data type	Constraints
+regNo	    int	        PRIMARY KEY NOT NULL
+name        varchar     NOT NULL
+email	    varchar     NOT NULL
+password	varchar	    NOT NULL
+phone	    varchar	    NOT NULL
+
+
+Table name: course
+
+Column name	Data type	Constraints
+courseID	int	        PRIMARY KEY NOT NULL
+title	    varchar	    NOT NULL
+credits	    int	        NOT NULL
+
+
+Table name: assignment_exam
+
+Column name	Data type	Constraints
+aeID	    int	        PRIMARY KEY NOT NULL
+maxmarks	int	        NOT NULL
+courseID	int	        NOT NULL
+FOREIGN KEY (courseID) REFERENCES course(courseID) ON DELETE CASCADE	
+
+
+Table name: enrolls
+
+Column name	Data type	Constraints
+regNo	    int	        NOT NULL
+courseID	int	        NOT NULL
+sem	        int	        NOT NULL
+grade	    varchar	CHECK (grade IN ('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+'))
+PRIMARY KEY (regNo, courseID, sem)		
+FOREIGN KEY (regNo) REFERENCES student(regNo) ON DELETE CASCADE		
+FOREIGN KEY (courseID) REFERENCES course(courseID) ON DELETE CASCADE		
+
+
+Table name: takes
+
+Column name	Data type	Constraints
+regNo	    int	        NOT NULL
+aeID	    int	        NOT NULL
+marks	    int	        NOT NULL
+PRIMARY KEY (regNo, aeID)		
+FOREIGN KEY (regNo) REFERENCES student(regNo) ON DELETE CASCADE		
+FOREIGN KEY (aeID) REFERENCES assignment_exam(aeID) ON DELETE CASCADE		
+
+
+Table name: belongs
+
+Column name	Data type	Constraints
+aeID	    int	        NOT NULL
+courseID	int	        NOT NULL
+PRIMARY KEY (aeID, courseID)		
+FOREIGN KEY (aeID) REFERENCES assignment_exam(aeID) ON DELETE CASCADE		
+FOREIGN KEY (courseID) REFERENCES course(courseID) ON DELETE CASCADE		
+
+
+Table name: sem
+
+Column name	Data type	Constraints
+regNo	    int	        NOT NULL
+sem	        int	        NOT NULL
+gpa	        float	    CHECK (gpa >= 0 AND gpa <= 10)
+PRIMARY KEY (regNo, sem)		
+FOREIGN KEY (regNo) REFERENCES student(regNo) ON DELETE CASCADE

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Assignment</title>
+<!-- Skeleton CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+<style>
+     h1{
+text-align: center;
+ }
+ h3{
+text-align: center;
+ }
+html, body {
+  background-image: url('waves.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+}
+.container {
+  margin-top: 50px;
+}
+
+</style>
+<script>
+    function validateForm() {
+        var marks = document.getElementById("marks").value;
+        var max_marks = document.getElementById("max_marks").value;
+
+        if (marks >= max_marks) {
+            alert("Marks achieved must be less than the maximum marks.");
+            return false;
+        }
+    }
+</script>
+</head>
+<body>
+<div class="container">
+    <h1>ProgressPilot</h1>
+    <div class="line">
+      <hr>
+    </div>
+    <div class="container">
+        <h3>Add New Assignment</h3>
+
+        <?php if(isset($success_message)): ?>
+            <div class="success-message"><?php echo $success_message; ?></div>
+        <?php endif; ?>
+
+        <?php if(isset($error_message)): ?>
+            <div class="error-message"><?php echo $error_message; ?></div>
+        <?php endif; ?>
+    
+    <form action="add_assignment_handler.php" method="POST">
+        <div class="row">
+            <div class="six columns">
+                <label for="semester">Semester:</label>
+                  <select class="u-full-width" id="semester" name="semester">
+                    <option value="1">1st Semester</option>
+                    <option value="2">2nd Semester</option>
+                    <option value="3">3rd Semester</option>
+                    <option value="4">4th Semester</option>
+                    <option value="5">5th Semester</option>
+		        		<option value="6">6th Semester</option>
+		        		<option value="7">7th Semester</option>
+		        		<option value="8">8th Semester</option>
+		      		</select>
+		      	</div>
+			</div>
+
+			<div class="row">
+				<div class="six columns">
+					<label for="course">Course:</label>
+					<select class="u-full-width" id="course" name="course">
+						<?php
+							$sql = "SELECT * FROM course";
+							$result = mysqli_query($conn, $sql);
+							if (mysqli_num_rows($result) > 0) {
+								while ($row = mysqli_fetch_assoc($result)) {
+									echo "<option value=\"{$row['course_id']}\">{$row['course_name']}</option>";
+								}
+							}
+						?>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="six columns">
+					<label for="marks">Marks Scored:</label>
+					<input class="u-full-width" type="number" id="marks" name="marks">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="six columns">
+					<label for="max_marks">Maximum Marks:</label>
+					<input class="u-full-width" type="number" id="max_marks" name="max_marks">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="six columns">
+					<input class="button-primary" type="submit" value="Add Assignment">
+				</div>
+			</div>
+		</form>
+        <a href="homepage.html">Back to Home</a>
+    </div>
+	</div>
+</body>
+</html>
+
+
