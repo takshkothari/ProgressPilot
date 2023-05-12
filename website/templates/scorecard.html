@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Current ScoreCard</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+        /* Custom styles */
+        h1{
+        text-align: center;
+         }
+         h3{
+        text-align: center;
+         }
+        html, body {
+          background-image: url('file:///Users/viswatarakalamsetty/Downloads/stacked-waves-haikei%20(1).svg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          font-family: "Helvetica Neue", "Helvetica", sans-serif;
+          font-weight: bold;
+        }
+        
+        .container {
+          margin-top: 50px;
+        }
+        
+        /* Custom button styles */
+        .button-primary {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 30px; /* Increase the button height */
+          font-size: 10px; /* Increase the font size */
+          margin-bottom: 20px; /* Add some margin between buttons */
+          text-align: center;
+          background-color: #a9d1dd;
+          color: black;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+        .line {
+          /*margin-top: 50px; */
+          text-align: center;
+          width: 100%;
+        }
+        .line hr {
+          border: 0;
+          height: 1px;
+          background-color: #ccc;
+          width: 50%;
+        }
+        
+        /* Remove underline from buttons */
+        a.button-primary {
+          text-decoration: none;
+          margin-top:5px ;
+        }
+        
+        /* Custom label and input styles */
+        .label-input {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+        .label-input label {
+          flex-basis: 30%;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+        .label-input input {
+          flex-grow: 1;
+        }
+        button[type="submit"] {
+          background-color: rgb(130, 207, 211);
+          color: rgb(0, 0, 0);
+        }
+
+        /* Add styles for input groups */
+        .input-group {
+          display: inline-flex;
+          align-items: center;
+        }
+
+        /* Add margin to input groups */
+        .input-group + .input-group {
+          margin-left: 10px;
+        }
+
+        /* Change color of save button on hover */
+        .button-primary:hover {
+          background-color: #fff;
+          color: black;
+        }
+        .a{
+            margin-top: 5 px;
+        }
+    </style>
+</head>
+<body>
+	
+	  <div class="container">
+		<h1>ProgressPilot</h1>
+		<div class="line">
+		  <hr>
+		</div>
+	  </div>
+      <h3>Course Scorecard</h3>
+      <div class="container">
+      <form>
+        <div class="row">
+          <div class="six columns">
+            <label for="semester">Select a Semester:</label>
+            <select id="semester" name="semester">
+            {% for semester in semesters %}
+            <option value="{{ semester }}">{{ semester }}</option>
+            {% endfor %}
+            </select>
+            </div>
+            <div class="six columns">
+            <label for="course">Select a Course:</label>
+            <select id="course" name="course">
+            <option value="">Select a course</option>
+            {% for course in courses %}
+            <option value="{{ course }}">{{ course }}</option>
+            {% endfor %}
+            </select>
+            </div>
+            </div>
+            </form>
+            {% if semester_selected and course_selected %}
+            <div class="row">
+            <div class="twelve columns">
+            <h6><b>Semester: </b>{{ selected_semester }}</h6>
+            <h6><b>Course Name:</b>{{ selected_course_name }}</h6>
+            <h6><b>Course ID:</b> {{ selected_course_id }}</h6>
+            <h6><b>Credits: </b>{{ selected_course_credits }}</h6>
+            <h6><b>Grade:</b>B{{ selected_course_grade }}</h6>
+            <h6><b>GPA: </b>{{ selected_course_gpa }}</h6>
+            </div>
+            </div>
+            {% endif %}
+            <table class="u-full-width">
+            <thead>
+            <tr>
+            <th>Assignment Name</th>
+            <th>Max Marks</th>
+            <th>Marks Obtained</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for assignment in assignments %}
+            <tr>
+            <td>{{ assignment.name }}</td>
+            <td>{{ assignment.max_marks }}</td>
+            <td>{{ assignment.marks_obtained }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+            <td>Total</td>
+            <td>{{ total_max_marks }}</td>
+            <td>{{ total_marks_obtained }}</td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            
+              </body>
+            </html>
+            
+            
+            
+            
