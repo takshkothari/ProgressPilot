@@ -58,7 +58,7 @@ create table belongs
   foreign key (course_id) references course(course_id) on delete cascade
  );
 
-create table sem
+create table semester
  (regNo double(9) not null,
   sem numeric(1,0) not null,
   gpa numeric(2,2) check (gpa >= 0 and gpa <= 10),
