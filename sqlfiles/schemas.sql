@@ -6,62 +6,60 @@ drop table takes;
 drop table belongs;
 drop table sem;
 
-create table student
- (regNo  double(9) not null, 
-  stud_name  varchar(20) not null, 
-  email varchar(50) not null, 
-  pass varchar(20) not null,
-  phone varchar(10) not null,
-  dob varchar(10) not null,
-  primary key (regNo)
- );
+CREATE TABLE student (
+  regNo DOUBLE NOT NULL,
+  stud_name VARCHAR(20) NOT NULL,
+  email VARCHAR(20) NOT NULL,
+  pass VARCHAR(20) NOT NULL,
+  phone INT NOT NULL,
+  dob DATE NOT NULL,
+  PRIMARY KEY (regNo),
+  CONSTRAINT email_check CHECK (email LIKE '%_@_____%___%')
+);
 
-create table course
- (course_id varchar(8) not null, 
-  c_title varchar(50) not null, 
-  credit numeric(1,0) check (credit > 0),
-  primary key (course_id)
- );
 
-create table assignment
- (ae_id  varchar(10) not null,
-  maxmarks numeric(2,0) not null,
-  course_id varchar(8) not null,
-  primary key (ae_id),
-  foreign key (course_id) references course (course_id) on delete cascade
- );
+CREATE TABLE course (
+  course_id varchar(8) primary key,
+  c_title varchar(20) not null,
+  credit numeric(1,0) check (credit > 0)
+);
+CREATE TABLE assignment (
+  ae_id varchar(10) NOT NULL,
+  maxmarks numeric(2,0) NOT NULL check (maxmarks<100),
+  course_id varchar(8),
+  PRIMARY KEY (ae_id),
+  FOREIGN KEY (course_id) REFERENCES course(course_id) ON UPDATE CASCADE
+);
 
-create table enrolls
- (regNo  double(9) not null,
-  course_id varchar(8) not null,
-  sem numeric(1,0) not null,
-  grade varchar(2) check (grade in ('A+', 'A', 'B', 'C', 'D', 'E', 'F')),
-  primary key (regNo, course_id, sem),
-  foreign key (regNo) references student(regNo) on delete cascade,
-  foreign key (course_id) references course(course_id) on delete cascade
- );
+CREATE TABLE enrolls (
+  regNo DOUBLE NOT NULL,
+  course_id VARCHAR(8) NOT NULL,
+  sem NUMERIC(1,0) NOT NULL,
+  grade VARCHAR(2) CHECK (grade IN ('A+', 'A', 'B', 'C', 'D', 'E', 'F')),
+  PRIMARY KEY (regNo, course_id, sem),
+  FOREIGN KEY (regNo) REFERENCES student(regNo) ON DELETE CASCADE,
+  FOREIGN KEY (course_id) REFERENCES course(course_id) ON UPDATE CASCADE
+);
+CREATE TABLE takes (
+  regNo DOUBLE NOT NULL,
+  ae_id VARCHAR(10) NOT NULL,
+  marks NUMERIC(2,0) NOT NULL,
+  PRIMARY KEY (regNo, ae_id),
+  FOREIGN KEY (regNo) REFERENCES student(regNo) ON DELETE CASCADE,
+  FOREIGN KEY (ae_id) REFERENCES assignment(ae_id) ON UPDATE CASCADE
+);
 
-create table takes
- (regNo double(9) not null,
-  ae_id varchar(10) not null,
-  marks numeric(2,0) not null,
-  primary key (regNo, ae_id),
-  foreign key (regNo) references student(regNo) on delete cascade,
-  foreign key (ae_id) references assignment(ae_id) on delete cascade
- );
-
-create table belongs
- (ae_id varchar(10) not null,
-  course_id varchar(8) not null,
-  primary key (ae_id, course_id),
-  foreign key (ae_id) references assignment(ae_id) on delete cascade,
-  foreign key (course_id) references course(course_id) on delete cascade
- );
-
-create table semester
- (regNo double(9) not null,
-  sem numeric(1,0) not null,
-  gpa numeric(2,2) check (gpa >= 0 and gpa <= 10),
-  primary key(regNo, sem),
-  foreign key (regNo) references student(regNo) on delete cascade
- );
+CREATE TABLE belongs (
+  ae_id VARCHAR(10) NOT NULL,
+  course_id VARCHAR(8) NOT NULL,
+  PRIMARY KEY (ae_id, course_id),
+  FOREIGN KEY (ae_id) REFERENCES assignment(ae_id) ON DELETE CASCADE,
+  FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE
+);
+CREATE TABLE sem (
+  regNo DOUBLE NOT NULL,
+  sem NUMERIC(1,0) NOT NULL,
+  gpa NUMERIC(4,2) CHECK (gpa >= 0 AND gpa <= 10),
+  PRIMARY KEY(regNo, sem),
+  FOREIGN KEY (regNo) REFERENCES student(regNo) ON DELETE CASCADE
+);
