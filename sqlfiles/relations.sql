@@ -6,7 +6,7 @@ delete from takes;
 delete from belongs;
 delete from sem;
 
-insert into student values (210905338, 'Taksh', 'taksh@gmail.com', 'taksh1234', '9136339052');
+insert into student values (210905338, 'Taksh', 'taksh@gmail.com', 'taksh1234', '9136339052',to_date('12/12/2003','dd/mm/yyyy'));
 insert into student values (210905170, 'Viswatara', 'viswatara@gmail.com', 'tara5678', '6281869387');
 
 insert into course values ('c1', 'DBS', 3);
