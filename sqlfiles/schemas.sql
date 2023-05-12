@@ -35,7 +35,7 @@ create table enrolls
  (regNo  varchar(9) not null,
   course_id varchar(8) not null,
   sem numeric(1,0) not null,
-  grade varchar(2) check (grade in ('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+')),
+  grade varchar(2) check (grade in ('A+', 'A', 'B', 'C', 'D', 'E', 'F')),
   primary key (regNo, course_id, sem),
   foreign key (regNo) references student(regNo) on delete cascade,
   foreign key (course_id) references course(course_id) on delete cascade
