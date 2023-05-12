@@ -16,3 +16,18 @@ begin
     dbms_output.put_line('Signed Up Successfully');
 end;
 /
+
+CREATE PROCEDURE SignUp(
+    IN p_regNo VARCHAR(50),
+    IN p_name VARCHAR(50),
+    IN p_email VARCHAR(50),
+    IN p_pwd VARCHAR(50),
+    IN p_phone VARCHAR(50)
+)
+BEGIN
+    INSERT INTO student(regNo, stud_name, email, password, phone) 
+    VALUES (p_regNo, p_name, p_email, p_pwd, p_phone);
+    SELECT 'Signed Up Successfully' AS result;
+END //
+
+DELIMITER ;
