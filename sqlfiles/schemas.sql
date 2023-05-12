@@ -47,7 +47,7 @@ create table takes
   marks numeric(2,0) not null,
   primary key (regNo, ae_id),
   foreign key (regNo) references student(regNo) on delete cascade,
-  foreign key (course_id) references course(course_id) on delete cascade
+  foreign key (ae_id) references assignment_exam(ae_id) on delete cascade
  );
 
 create table belongs
