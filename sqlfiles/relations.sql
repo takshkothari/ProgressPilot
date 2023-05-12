@@ -31,5 +31,5 @@ insert into belongs values ('a1', 'c2');
 insert into belongs values ('a2'. 'c2');
 insert into belongs values ('a3', 'c1');
 
-insert into sem values (210905338, 4, 8.40);
-insert into sem values (210905338, 4, 7.97);
+insert into sem values (210905338, 4, 8.4);
+insert into sem values (210905338, 4, 7.9);
