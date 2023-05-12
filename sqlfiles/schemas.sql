@@ -18,8 +18,8 @@ create table student
 
 create table course
  (course_id varchar(8) not null, 
-  title varchar(50) not null, 
-  credits numeric(1,0) check (credits > 0),
+  c_title varchar(50) not null, 
+  credit numeric(1,0) check (credit > 0),
   primary key (course_id)
  );
 
